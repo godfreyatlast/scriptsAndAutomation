@@ -2,7 +2,7 @@
 #  /usr/openv/netbackup/db/shared_scripts/impactjobsweep.ba.sh
 #-------------------------------------------------------------------------------
 # HISTORY:	CHANGE	DATE		WHO					Email						COMMENTS
-#			0		00/00/11	James Godfrey		james.godfrey@ge.com		Initial Rev
+#			0		00/00/11	James Godfrey			Initial Rev
 PATH="/usr/bin::/usr/openv/netbackup/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/volmgr/bin:/usr/openv/netbackup/bin/goodies:/usr/sbin:/usr/bin:/etc/opt/SUNWconn/bin:/opt/VRTS/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/netbackup/db/shared_scripts"
 
 #Variables
@@ -12,7 +12,7 @@ bperrorout2="/usr/openv/netbackup/logs/impactjobsweep/bperrorout2"
 mailreport="/usr/openv/netbackup/logs/impactjobsweep/mailreport"
 rmall=`rm $mailreport;rm $bperrorout;`
 subject="Ticket Sweep"
-TO="james.godfrey@ge.com"
+TO="jm"
 
 ERRORS=( 84 86 800 2074 58 )
 FILESWEEP=/tmp/err.sweep
