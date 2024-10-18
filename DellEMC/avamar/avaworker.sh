@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@sungardas.com
+#  EMAIL..........:  
 #  CREATED........:  11/15/22
 #  DESCRIPTION....:  
 #  NOTES..........:  See options from example syntax
@@ -10,8 +10,8 @@
 #==============================================================================
 # Please note all changes including changes lines.  See example "CHANGE1"
 # CHANGE	DATE		Email/Name						COMMENTS
-# 1			11-15-22	james.godfrey@sungardas.com		Inital Rev
-# 2			01-10-23	james.godfrey@sungardas.com		Inital Rev
+# 1			11-15-22	jm		Inital Rev
+# 2			01-10-23	jm		Inital Rev
 
 export PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/sbin:/usr/sbin:/home/jgodfrey/bin:/usr/openv/netbackup/bin/goodies::/usr/openv/netbackup/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/scripts:/opt/emc-tools/bin:/usr/local/avamar/bin:/sbin:/usr/sbin:/usr/local/avamar/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/apache/bin:/usr/local/ssl/bin"
 DATE=$(date +"%m/%d/%y %H:%M:%S");
@@ -33,8 +33,8 @@ printf "Debug information only: \n Script initiated from $(printf $SSH_CLIENT | 
 printf " Script pid $$ \n All instances of avaworker running \n$(ps -ef | grep avaworker | egrep -v grep) \n\n"; ###CHANGE4 Print the scripts at that moment
 
 #User Configurable Variables
-EMAIL=james.godfrey@sungardas.com
-AUDITEMAIL=james.godfrey@sungardas.com
+EMAIL=j
+AUDITEMAIL=j
 
 #Functions (functions should always go up top so they are loaded into memory by the time they are invoked):	
 
