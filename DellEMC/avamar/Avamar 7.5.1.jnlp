@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" version="7.5.1-101" codebase="https://cvgapava01.td.afg/mc">
+
+    <information>
+        <title>Avamar Administrator</title>
+        <vendor>EMC Corporation</vendor>
+        <homepage href="http://www.avamar.com/"/>
+        <description>Avamar Administrator</description>
+        <description kind="short">Avamar Administrator</description>
+        <offline-allowed/>
+    </information>
+
+    <security>
+        <all-permissions/>
+    </security>
+
+    <resources>
+        <j2se version="1.8+" java-vm-args="-Xmx512m" href="https://java.com/en/download/"/>
+        <jar href="lib/mcclient.jar" main="true"/>
+        <jar href="lib/ansir_tristate.jar"/>
+        <jar href="lib/images.jar"/>
+        <jar href="lib/rmi_ssl_keystore.jar"/>
+        <jar href="lib/asn_client.jar"/>
+        <jar href="lib/avamar_mdate.jar"/>
+        <jar href="lib/AxionAdministratorOLH.jar"/>
+        <jar href="lib/jgraph.jar"/>
+        <jar href="lib/mail.jar"/>
+        <jar href="lib/xercesImpl.jar"/>
+        <jar href="lib/jnlp.jar"/>
+        <jar href="lib/jackson-core-asl-1.9.13.jar"/> 
+        <jar href="lib/rabbitmq-config.jar"/>
+        <jar href="lib/jfreechart-1.0.14.jar"/>
+        <jar href="lib/jcommon-1.0.17.jar"/>
+        <jar href="lib/TableLayout-bin-jdk1.5-2007-04-21.jar"/>
+        <jar href="lib/mccommons.jar"/>
+        <jar href="lib/jh.jar"/>
+        <jar href="lib/org-netbeans-swing-outline.jar"/>
+    </resources>
+
+    <application-desc main-class="com.avamar.mc.gui.console.LoginDialog">
+        <argument>-mcsaddr</argument>
+        <argument>cvgapava01.td.afg</argument>
+        <argument>-domain</argument>
+        <argument>/</argument>
+        </application-desc>
+</jnlp>

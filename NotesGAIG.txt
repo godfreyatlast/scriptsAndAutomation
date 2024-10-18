@@ -1,0 +1,13 @@
+Scripting notes
+
+in notepad++, for bash scripts, select "S" (shell) for language
+all bash scripts start with #!/bin/bash
+printf needs to be told to go to next line with \n (escape new line). To add a blank line, have to use \n\n
+when copying script from notepad++ to script on server, go to colon prompt (:) and type 1,$d to empty the file before pasteing in from notepad++
+to end case statement, use esac
+to end if statement, use fi
+in shell, can type echo PATH, in order to show the paths that are loaded as environment variables
+system variables are always in CAPS i.e. PATH
+
+/home/admin/scripts/somescript.sh option1 option2
+$0                                $1      $2
