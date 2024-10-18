@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  /usr/openv/scripts/excludemanager.sh
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@ge.com
+#  EMAIL..........:  
 #  CHANGE.........:  2
 #  CREATED........:  12/21/11
 #  DESCRIPTION....:  To Be used by a backup admin to push/pull netbackup exclude lists
@@ -13,7 +13,7 @@
 # 1		01/17/12	James Godfrey									Corrected if operator for bpgp not making tmp file when EXCLUDE doesnt exsist. 
 #																	Added trap for ctrl c (SIGINT).  Added command line argument for CLIENTNAME variable.
 # 2		03/23/12	James Godfrey									Changed NBUWORKER location
-# 2		04/08/15	James Godfrey		jgodfrey@gaig.com			Updated to work on AFG netbackup
+# 2		04/08/15	James Godfrey				Updated to work on AFG netbackup
 DATE_UPDATED="04/08/15"; # <-- Please update date when making revisions  
 #==============================================================================
 PATH="/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/sbin:/usr/sbin:/home/jgodfrey/bin:/usr/openv/netbackup/bin/goodies::/usr/openv/netbackup/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/scripts"
