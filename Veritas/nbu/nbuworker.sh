@@ -2,14 +2,14 @@
 #==============================================================================
 #  SCRIPT.........:  /usr/openv/scripts/resources/nbuworker
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@ge.com
+#  EMAIL..........:  
 #  CREATED........:  12/21/11
 #  DESCRIPTION....:  To Be used as an API like interface with front end scripts
 #  NOTES..........:  See options from example syntax
 #==============================================================================
 DATE_UPDATED="06-07-12"; # <-- Please update date when making revisions  
 # CHANGE	DATE		Email/Name						COMMENTS
-# 0			12-21-11	james.godfrey@ge.com			Initial Rev
+# 0			12-21-11				Initial Rev
 # 1			02-29-12									Updated version option use -AL. Updated --os to specifically check for windows and unix
 # 2			03-15-12									Added functions/options for remote user backup script.
 # 3			06-07-12									Added/fixed --excludesendux for bpgp policy support
