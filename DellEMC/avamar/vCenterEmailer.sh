@@ -85,9 +85,9 @@ done
 
 
   # Browse New Vceenter
-     nvBrowse=$(mccli vcenter browse --name=cvgapvbvcs01.td.afg --type=VM --recursive=true --xml)
+     nvBrowse=$(mccli vcenter browse --name=apvbvcs01.td.afg --type=VM --recursive=true --xml)
   # Browse Old v
-     ovBrowse=$(mccli vcenter browse --name=cvgwpvcs55.ga.afginc.com --type=VM --recursive=true --xml)
+     ovBrowse=$(mccli vcenter browse --name=wpvcs55.ga.afginc.com --type=VM --recursive=true --xml)
 
   ovArray=()
   nvArray=()
@@ -110,7 +110,7 @@ done
 
 
 output+="\n\nAll vCenter VMs as seen by Avamar:\n"
-output+="cvgwpvcs55.ga.afginc.com\tcvgapvbvcs01.td.afg\n"
+output+="wpvcs55.ga.afginc.com\tapvbvcs01.td.afg\n"
 
 lengthOV=${#ovArray[@]}
 lengthNV=${#nvArray[@]}
