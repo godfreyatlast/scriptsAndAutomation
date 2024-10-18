@@ -46,11 +46,11 @@ case "$optionName" in
 		### New vCenters will need to be added to this with the right network and netmask
 		### New Proxies on new vCenters need to be added
 		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -net 10.60.50.0 gw 10.60.100.1 netmask 255.255.254.0 dev bond2' " ; ##vblock
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -net 10.60.16.0 gw 10.60.100.1 netmask 255.255.252.0 dev bond2' " ; ##fklesx500
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -net 10.60.8.0 gw 10.60.100.1 netmask 255.255.252.0 dev bond2' " ; ##fklesx500 managment 
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -host 10.60.27.201 gw 10.60.100.1 dev bond2' " ;    ##fklapavaprx01 on vblock
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -host 10.60.27.205 gw 10.60.100.1 dev bond2' " ;    ##fklapavaprx05 on vblock
-		echo "Creating routes: bond2 (10.60.100.x) will be used to talk to the DR vCenter/ESXi enviroment (10.60.16.x, 10.60.8.x, 10.60.50.0) AND fklapavaprx05.td.afg & fklapavaprx01.td.afg.  You should now be able to restore VMs to the the DR hypervisor while in the DR bubble. These changes will not survive a reboot.";
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -net 10.60.16.0 gw 10.60.100.1 netmask 255.255.252.0 dev bond2' " ; ##fsx500
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -net 10.60.8.0 gw 10.60.100.1 netmask 255.255.252.0 dev bond2' " ; ##esx500 managment 
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -host 10.60.27.201 gw 10.60.100.1 dev bond2' " ;    ##apavaprx01 on vblock
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route add -host 10.60.27.205 gw 10.60.100.1 dev bond2' " ;    ##apavaprx05 on vblock
+		echo " You should now be able to restore VMs to the the DR hypervisor while in the DR bubble. These changes will not survive a reboot.";
 	;;
 	
 	
@@ -59,10 +59,10 @@ case "$optionName" in
 		### New vCenters will need to be added to this with the right network and netmask
 		### New Proxies on new vCenters need to be added
 		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -net 10.60.50.0 netmask 255.255.254.0 dev bond2' " ; ##vblock
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -net 10.60.16.0 netmask 255.255.252.0 dev bond2' " ; ##fklesx500
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -net 10.60.8.0 netmask 255.255.252.0 dev bond2' " ; ##fklesx500 managment
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -host 10.60.27.201' " ;   ##fklapavaprx01 on vblock
-		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -host 10.60.27.205' " ;   ##fklapavaprx05 on vblock
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -net 10.60.16.0 netmask 255.255.252.0 dev bond2' " ; ##esx500
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -net 10.60.8.0 netmask 255.255.252.0 dev bond2' " ; ##fsx500 managment
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -host 10.60.27.201' " ;   ##apavaprx01 on vblock
+		/usr/bin/ssh-agent bash -c "/usr/bin/ssh-add ~/.ssh/dpnid 2>/dev/null; /usr/local/avamar/bin/mapall --user=root --all+ --noerror 'route del -host 10.60.27.205' " ;   ##apavaprx05 on vblock
 		echo "Removed modified routes for bond2 (10.60.100.x) to talk to DR vCenter/ESXi enviroment and proxies.";
 	;;
 	
@@ -75,7 +75,7 @@ case "$optionName" in
 		echo "Finding and replacing 10.60.27.11 to 10.60.100.11 in proxy config files";
 		
 		echo "Added 10.60.100.10 to the hosts file"
-		echo "10.60.100.10	fkldd01.td.afg	fkldd01" >> /etc/hosts
+		echo "10.60.100.10	dd01.td.afg	dd01" >> /etc/hosts
 		
 		echo "Restarting axionfs and avagent"
 		service axionfs restart
@@ -92,7 +92,7 @@ case "$optionName" in
 		echo "Finding and replacing 10.60.100.11 to 10.60.27.11 in proxy config files";
 		
 		echo "Removing 10.60.100.10 from the hosts file"
-		sed -i '/fkldd01.td.afg/d' /etc/hosts
+		sed -i '/dd01.td.afg/d' /etc/hosts
 		
 		echo "Restarting axionfs and avagent"
 		service axionfs restart
