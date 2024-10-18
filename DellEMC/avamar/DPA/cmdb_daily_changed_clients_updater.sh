@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  /app/opt/emc/dpa/scripts/cmdb_daily_changed_clients_updater.sh
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; 
+#  EMAIL..........:  
 #  CREATED........:  3-31-17
 #  DESCRIPTION....:  To pull csv of all clients from DPA.  Make any needed text manipulation.  And send to the location on isilon which moved to Service-Now by "MoveIt" (moveit is controlled by EISG) 
 #  NOTES..........:  
