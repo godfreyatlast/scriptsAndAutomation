@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  /app/opt/emc/dpa/scripts/cmdb_daily_policy_updater.sh
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@gaig.com
+#  EMAIL..........:  james.david.godfrey@gmail.com; 
 #  CREATED........:  3-31-17
 #  DESCRIPTION....:  To pull csv of all clients from DPA.  Make any needed text manipulation.  And send to the location on isilon which moved to Service-Now by "MoveIt" (moveit is controlled by EISG) 
 #  NOTES..........:  
@@ -23,7 +23,7 @@ $DATE \n\n" ; ###Prints source ip of ssh session & name of host
 
 #User Configurable Variables
 #EMAIL=jgodfrey@gaig.com
-EMAIL=DL-GAI.ITServices.Enterprise.Backup@GAIG.COM
+EMAIL=
 
 #Functions:
 #email
