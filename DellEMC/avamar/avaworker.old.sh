@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@gaig.com
+#  EMAIL..........:  
 #  CREATED........:  12/21/11
 #  DESCRIPTION....:  To Be used as an API like interface with front end scripts
 #  NOTES..........:  See options from example syntax
