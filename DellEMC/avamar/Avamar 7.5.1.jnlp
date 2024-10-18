@@ -39,7 +39,7 @@
 
     <application-desc main-class="com.avamar.mc.gui.console.LoginDialog">
         <argument>-mcsaddr</argument>
-        <argument>cvgapava01.td.afg</argument>
+        <argument>cvgapava0</argument>
         <argument>-domain</argument>
         <argument>/</argument>
         </application-desc>
