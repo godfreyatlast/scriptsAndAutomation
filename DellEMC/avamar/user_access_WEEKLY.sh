@@ -1,6 +1,6 @@
 # This script is depenedent on mccli and mailx.
 # Script is used to send weekly email to audit containing who has access to backup environment. #
-# Created by Trevor Baker tbaker2@gaig.com , tb9848@gmail.com
+# Created by Trevor Baker 
 
 #!/bin/bash
 export PATH=/opt/emc-tools/bin:/usr/local/avamar/bin:/sbin:/usr/sbin:/usr/local/avamar/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/apache/bin:/usr/local/ssl/bin:/home/admin/scripts/vCenterRefresh:/usr/local/avamar/bin/mccli:/usr/java/latest/bin/:/usr/java/latest/
