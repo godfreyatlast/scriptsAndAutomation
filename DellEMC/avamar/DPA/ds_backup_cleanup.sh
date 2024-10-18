@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; james.godfrey@gaic.com
+#  EMAIL..........:  ;
 #  CHANGE.........:  0
 #  CREATED........:  10-01-13
 #  DESCRIPTION....:  1) Clean up old datastore DB backups 2) Dump flat file export 
@@ -10,7 +10,7 @@
 #==============================================================================
 DATE_UPDATED="10-01-13"; # <-- Please update date when making revisions
 # CHANGE		DATE			Email/Name											COMMENTS
-# 1             12-20-2017      jgodfrey@gaig.com                                   Updated to deleted folders & Email when it is not able to delete files.
+# 1             12-20-2017                                        Updated to deleted folders & Email when it is not able to delete files.
 #==============================================================================
 PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/sbin:/usr/sbin:/root/bin:/app/opt/emc/dpa/services/bin:/usr/bin:/usr/openv/netbackup/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/volmgr/bin:/usr/openv/netbackup/bin/goodies:/usr/sbin:/opt/VRTS/bin:/usr/openv/netbackup/bin/admincmd:/usr/openv/netbackup/:/app/opt/emc/dpa/scripts/:/app/opt/emc/dpa/services/bin/:/usr/local/avamar/bin/:"
 # Simple directory trimming tool to handle housekeeping
@@ -18,7 +18,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/sbin:/usr/sb
 #
 # Usage: <script> <dir> <number of files to keep>
 
-EMAIL=DL-GAI.ITServices.Enterprise.Backup@GAIG.COM
+EMAIL=
 BIN="/app/opt/emc/dpa/services/bin";
 
 if [ $# -ne 2 ]; then
