@@ -2,7 +2,7 @@
 #==============================================================================
 #  SCRIPT.........:  
 #  AUTHOR.........:  James Godfrey
-#  EMAIL..........:  james.david.godfrey@gmail.com; jgodfrey@gaig.com
+#  EMAIL..........:  
 #  CREATED........:  10-26-16
 #  DESCRIPTION....:  To Be used as an API like interface with front end scripts
 #  NOTES..........:  This script should be placed on the DR grid at /home/admin/scripts/drnetworkmanager.sh
