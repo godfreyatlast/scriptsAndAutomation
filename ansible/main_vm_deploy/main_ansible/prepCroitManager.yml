@@ -1,0 +1,236 @@
+# filename: pre-configure-ubuntu-example.yml
+- name: Setup cluster environments
+  hosts: all
+  become: yes
+  
+  vars_files:
+      # - './extra_vars/{{ vmvars }}'  # Example  -e 'vmvars=varsRcephVMs.yml'
+  vars:
+  
+    tz: Australia/Sydney
+
+    sudoers:
+      - ubuntu
+
+    root_password: "AQ!sw2de3fr4"
+    ansible_ssh_password: "AQ!sw2de3fr4"
+    ansible_user: "root"
+
+    netplan_file: "{{ netplan_config_file }}"
+
+    netplan_if: "{{ netplan_config_if }}"
+
+    netplan_ip: "{{ netplan_config_ip }}"
+
+    netplan_data: |
+      network:
+        version: 2
+        ethernets:
+          {{ netplan_if }}:
+            dhcp4: false
+            dhcp6: false
+            dhcp-identifier: mac
+            link-local: []
+            addresses: [{{ netplan_ip }}]
+
+    ssh_user: root
+
+    # ssh_key: |
+    #   ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDIAJq4d9eXn00ZJKqqV8WhxPA59ufmCHzMtAWPvE7h4ofuB712AE0lXcWRJ8xysU3nqkZdCKM84m09wBYJG9Bc195T77fKBlHq6q8y0n4ErB6FW0Bwy7P4rpYlDQ+2a7P2SGy+OWDU05+L1fO1YcZpTAnMuzjjYPSv/ohBTJ+MU7AhsBXoYLWlkjV1CsBHCJ/VuFrAfCnj/LWiT+QyNcshdB08JUsLWcoxLmIwde2s0FPYqPSodIvEkmbQml59BndsCPBrnvN+iLBcR4b0Wk+J9bQkqSspGTnye0ald+nlJPupzwvDfFbL2lyThjU4U+Us6UEm3ptejZBlm4/DEKcFu5RAt0IEtSWoJDhSY96FNOrjo6sMDFdTZeFpwMgOkCh6ZDAYTRjamOdScvH5Sq/7doKsuTjdyb1utIGcKvVUB6NrWJq691o42Q49CCw6sHVUdC8PDrWsg4Z+1nAfA1R1QjgnccKdi3hAomUNapzxYstLjf/sG1AqByeHDoOTuS8= ubuntu@nuc112
+
+    hostname: croitmgr1
+  tasks:
+    - name: set hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"
+
+    # - name: Install yum utils
+    #   yum:
+    #     name: yum-utils
+    #     state: latest
+
+    # - name: Install device-mapper-persistent-data
+    #   yum:
+    #     name: device-mapper-persistent-data
+    #     state: latest
+
+    # - name: Install lvm2
+    #   yum:
+    #     name: lvm2
+    #     state: latest
+
+    # - name: Add Docker repo
+    #   get_url:
+    #     url: https://download.docker.com/linux/centos/docker-ce.repo
+    #     dest: /etc/yum.repos.d/docer-ce.repo
+    #   become: yes
+
+    # - name: Enable Docker Edge repo
+    #   ini_file:
+    #     dest: /etc/yum.repos.d/docer-ce.repo
+    #     section: 'docker-ce-edge'
+    #     option: enabled
+    #     value: 0
+    #   become: yes
+
+    # - name: Enable Docker Test repo
+    #   ini_file:
+    #     dest: /etc/yum.repos.d/docer-ce.repo
+    #     section: 'docker-ce-test'
+    #     option: enabled
+    #     value: 0
+    #   become: yes
+
+    # - name: Install Docker
+    #   package:
+    #     name: docker-ce
+    #     state: latest
+    #   become: yes
+
+    # - name: Start Docker service
+    #   service:
+    #     name: docker
+    #     state: started
+    #     enabled: yes
+    #   become: yes
+
+    # - name: Add user vagrant to docker group
+    #   user:
+    #     name: vagrant
+    #     groups: docker
+    #     append: yes
+    #   become: yes
+
+    - name: Disable SELinux
+      ansible.posix.selinux:
+        state: disabled
+
+    - name: Run NTP disable command
+      ansible.builtin.command: timedatectl set-ntp false
+      register: ntpdisable
+
+    - name: install docker
+      ansible.builtin.command: "{{ item }}"
+      with_items:
+      - dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+      - yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+      - systemctl start docker 
+      - systemctl enable docker
+      register: installDocker
+
+    - name: Run firewall disable command
+      ansible.builtin.command: systemctl disable firewalld
+      register: firewalldisable
+
+    - name: Run create Croit Docker Image
+      ansible.builtin.command: docker create --name croit-data croit/croit:latest
+      # ansible.builtin.command: docker create --name croit-data croit/croit:latest.reef
+      register: createCroitDockerImage
+
+    - name: Run run Croit Docker Image
+      ansible.builtin.command: docker run --cap-add=SYS_TIME -v /var/run/docker.sock:/var/run/docker.sock --net=host --restart=always --volumes-from croit-data --name croit -d croit/croit:latest
+      register: runCroitDockerImage
+
+    # - name: set timezone "{{ tz }}"
+    #   community.general.timezone:
+    #     name: "{{ tz }}"
+
+    # - name: set no password sudo
+    #   ansible.builtin.lineinfile:
+    #     path: /etc/sudoers
+    #     line: "{{ item }} ALL=(ALL) NOPASSWD: ALL"
+    #   loop: "{{ sudoers }}"
+
+    # # PermitRootLogin in /etc/ssh/sshd_config has to be yes in order to ssh in with root
+    # - name: update root password
+    #   ansible.builtin.user:
+    #     name: root
+    #     password: "{{ root_password | password_hash('sha512') }}"
+
+    # # Configure 2nd Interface IP
+    # - name: print netplan config file
+    #   ansible.builtin.debug:
+    #     msg: "{{ netplan_file }}"
+
+    # - name: print netplan config data
+    #   ansible.builtin.debug:
+    #     msg: "{{ netplan_data }}"
+
+    # - name: write netplan config data
+    #   ansible.builtin.copy:
+    #     content: "{{ netplan_data }}"
+    #     dest: "{{ netplan_file }}"
+    #     owner: root
+    #     group: root
+    #     mode: '0644'
+    
+    # - name: apply netplan config
+    #   ansible.builtin.shell: |
+    #     netplan apply
+    
+    # - name: get "{{ netplan_if }}" address info
+    #   ansible.builtin.shell: |
+    #     ip -4 addr show {{ netplan_if }}
+    #   register: ip_addr_show_out
+        
+    # - name: show "{{ netplan_if }}" address info
+    #   ansible.builtin.debug:
+    #     msg: "{{ ip_addr_show_out.stdout_lines }}"
+
+    # # install docker
+    # - name: install docker
+    #   ansible.builtin.apt:
+    #     name: docker.io
+    #     state: present
+    #     update_cache: yes
+
+    # # disable IPv6
+    # - name: disable ipv6
+    #   ansible.builtin.shell: |
+    #     sysctl -w net.ipv6.conf.all.disable_ipv6=1
+    #     sysctl -w net.ipv6.conf.default.disable_ipv6=1
+    #     sysctl -w net.ipv6.conf.lo.disable_ipv6=1
+    #     sysctl -p
+    #   register: sysctl_out
+
+    # - name: print sysctl output
+    #   ansible.builtin.debug:
+    #     msg: "{{ sysctl_out.stdout }}"
+    
+    # - name: add "net.ipv6.conf.all.disable_ipv6 = 1" in /etc/sysctl.conf
+    #   ansible.builtin.lineinfile:
+    #     path: /etc/sysctl.conf
+    #     line: "{{ item }}"
+    #   loop:
+    #     - "net.ipv6.conf.default.disable_ipv6 = 1"
+    #     - "net.ipv6.conf.all.disable_ipv6 = 1"
+
+    # - name: disable apt daily timer
+    #   ansible.builtin.systemd:
+    #     name: apt-daily.timer
+    #     state: stopped
+    #     enabled: no
+
+    # - name: disable apt daily upgrade timer
+    #   ansible.builtin.systemd:
+    #     name: apt-daily-upgrade.timer
+    #     state: stopped
+    #     enabled: no
+
+    # - name: print key
+    #   ansible.builtin.debug:
+    #     msg: "{{ ssh_key }}"
+
+    # - name: add ssh key to root
+    #   ansible.builtin.lineinfile:
+    #     path: /root/.ssh/authorized_keys
+    #     line: "{{ ssh_key }}"
+    #   when: ssh_user == 'root'
+
+    # - name: add ssh key to non root user
+    #   ansible.builtin.lineinfile:
+    #     path: "/home/{{ ssh_user }}/.ssh/authorized_keys"
+    #     line: "{{ ssh_key }}"
+    #   when: ssh_user != 'root'
+
+    

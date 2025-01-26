@@ -1,0 +1,44 @@
+- hosts: localhost
+  gather_facts: no
+  vars:
+    vcenter_server: "vcsa1.lab.lan"
+    vcenter_user: "james.godfrey@lab.lan"
+    vcenter_pass: "AQ!sw2de3"
+    datacenter_name: "Datacenter"
+    cluster_name: "Cluster-core"
+  tasks:
+  - name: Clone the VM template and customize
+    vmware_guest:
+      hostname: "{{ vcenter_server }}"
+      username: "{{ vcenter_user }}"
+      password: "{{ vcenter_pass }}"
+      validate_certs: False
+      name: ansible-vm1
+      template: T_rocky9
+      datacenter: "{{ datacenter_name }}"
+      folder: /{{ datacenter_name }}/vm/
+      cluster: "{{ cluster_name }}"
+      state: poweredon
+      datastore: "vsanDatastore-core"
+      networks:
+      - name: vl50-dhcp
+        start_connected: yes
+        ip: 10.0.50.251
+        netmask: 255.255.255.0
+        gateway: 10.0.50.1
+        type: static
+        dns_servers: 10.0.10.100
+      - name: vl50-dhcp
+        start_connected: yes
+        ip: 10.0.50.252
+        netmask: 255.255.255.0
+        gateway: 10.0.50.1
+        type: static
+        dns_servers: 10.0.10.100
+      customization:
+        hostname: "ansible-vm"
+        dns_servers:
+        - 10.0.10.100
+        - 8.8.8.8
+      wait_for_ip_address: yes
+    delegate_to: localhost
