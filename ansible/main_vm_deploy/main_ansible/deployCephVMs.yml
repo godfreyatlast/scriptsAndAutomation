@@ -55,7 +55,7 @@
           - name: "{{ vm_net_name }}"
             start_connected: true
             device_type: "{{ vm_net_type }}"
-            type: dhcp
+            type: static
           - name: "{{ vm_net_name2 }}" 
             start_connected: true
             device_type: "{{ vm_net_type }}"
